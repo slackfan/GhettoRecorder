@@ -93,14 +93,14 @@ def copy_dst(str_radio, recorder_dst, bin_writer, recorder_src, buf_size):
     :params: buf_size: chunk size to fit block size of OS
     """
     try:
-        remove_dst(recorder_dst, bin_writer)
+        rename_dst(recorder_dst, bin_writer)
         copy_src_dst(recorder_dst, recorder_src, buf_size)
         print(f'\n-WRITE->>> {str_radio}: {recorder_dst.encode("utf-8")}\n')
     except Exception as e:
         print("Unusual error in mod ghetto_recorder.py, Android?", e)
 
 
-def remove_dst(rec_dst, bin_writer):
+def rename_dst(rec_dst, bin_writer):
     """Delete existing file for shutil copy.
 
     :params: rec_dst: absolute path to user file
@@ -108,10 +108,10 @@ def remove_dst(rec_dst, bin_writer):
     :rtype: True
     """
     try:
-        file = pathlib.Path(rec_dst.encode('utf-8'))
-        if file.is_file():
-            new_name = f"{file.name}.{int(time.time())}.{file.stem}"
-            file.rename(file.parent, new_name)
+        dst_file = pathlib.Path(rec_dst)
+        if dst_file.is_file():
+            new_name = f"{dst_file.stem}.{int(time.time())}{dst_file.suffix}"
+            dst_file.rename(pathlib.Path(dst_file.parent, new_name))
     except AttributeError:
         return False
     bin_writer.flush()
