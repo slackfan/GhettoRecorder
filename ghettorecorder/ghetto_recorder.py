@@ -16,8 +16,9 @@
 """
 
 import os
+import pathlib
 import shutil
-from time import strftime
+import time
 
 from aacrepair import AacRepair
 
@@ -107,8 +108,10 @@ def remove_dst(rec_dst, bin_writer):
     :rtype: True
     """
     try:
-        if os.path.exists(rec_dst.encode('utf-8')):
-            os.remove(rec_dst.encode('utf-8'))
+        file = pathlib.Path(rec_dst.encode('utf-8'))
+        if file.is_file():
+            new_name = f"{file.name}.{int(time.time())}.{file.stem}"
+            file.rename(file.parent, new_name)
     except AttributeError:
         return False
     bin_writer.flush()
@@ -193,7 +196,7 @@ def this_time():
     :returns: date and time
     :rtype: str
     """
-    time_val = strftime("_%Y_%m_%d_%H.%M.%S")
+    time_val = time.strftime("_%Y_%m_%d_%H.%M.%S")
     return time_val
 
 
