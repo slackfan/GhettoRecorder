@@ -41,7 +41,7 @@ def init(**kwargs):
     helper.radio_name_list = kwargs['radio_name_list']
     helper.config_file_radio_url_dict = kwargs['config_file_radio_url_dict']
 
-    true_list = [True, 'y', 'Y', 'yes', 'Yes', 'YES', 'n', 'N', 'no', 'No', 'NO', 'true', 'True', 'TRUE', '1']
+    true_list = [True, 'y', 'Y', 'yes', 'Yes', 'YES', 'true', 'True', 'TRUE', '1']
     ghettoApi.blacklist.blacklist_enable = kwargs['config_file_settings_dict']['blacklist_enable'] in true_list
     if ghettoApi.blacklist.blacklist_enable:
         blacklist_enable(kwargs['blacklist_name'])
