@@ -5,7 +5,7 @@
 :methods: teardown: Graceful copy, mark files incomplete on shut down.
 :methods: copy_dst: Decide if recorder file should be dumped or not.
 
-:methods: remove_dst: Delete existing file for shutil copy.
+:methods: rename_dst: Renames existing file for shutil copy.
 :methods: copy_src_dst: Copy recorder file to user file
 :methods: bin_writer_reset_file_offset: Reset file writer offset to begin of file
 :methods: record_write_first: first chunk for file head, will be repaired if aac
@@ -101,7 +101,7 @@ def copy_dst(str_radio, recorder_dst, bin_writer, recorder_src, buf_size):
 
 
 def rename_dst(rec_dst, bin_writer):
-    """Delete existing file for shutil copy.
+    """Rename existing file for shutil copy.
 
     :params: rec_dst: absolute path to user file
     :params: bin_writer: instance of the open recorder file
