@@ -1,0 +1,26 @@
+{
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "hbenl.vscode-test-explorer",
+                "littlefoxteam.vscode-python-test-adapter",
+                "ms-python.black-formatter",
+                "ms-python.debugpy",
+                "ms-python.isort",
+                "ms-python.pylint",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "natqe.reload"
+            ]
+        }
+    },
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "name": "GhettoRecorder",
+    "onCreateCommand": "${containerWorkspaceFolder}/.devcontainer/onCreateCommand.sh",
+    "postCreateCommand": "${containerWorkspaceFolder}/.devcontainer/postCreateCommand.sh",
+    "service": "GhettoRecorder",
+    "shutdownAction": "stopCompose",
+    "workspaceFolder": "/GhettoRecorder"
+}
